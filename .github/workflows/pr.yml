@@ -5,11 +5,11 @@ on: pull_request
 jobs:
   build:
     runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        versions: [6]
+   strategy:
+     matrix:
+       versions: [11-jre, 17-jre]
     env:
-      repo: "govpf/hello" # Please don't forget to create the repo on Docker Hub
+      repo: "govpf/springboot-base"
     steps:
 
     - name: Checkout
@@ -21,10 +21,8 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v2.7.0
       with:
-        context: .
-#        context: ./${{ matrix.versions }}
-        file: ./Dockerfile
-#        file: ./${{ matrix.versions }}/Dockerfile
+        context: ./${{ matrix.versions }}
+        file: ./${{ matrix.versions }}/Dockerfile
         platforms: linux/amd64
         pull: true
         push: false
