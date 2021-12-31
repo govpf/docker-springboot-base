@@ -9,9 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-   strategy:
-     matrix:
-       versions: [11-jre, 17-jre]
+    strategy:
+      matrix:
+        versions: [11-jre, 17-jre]
     env:
       repo: "govpf/springboot-base"
     steps:

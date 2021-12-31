@@ -8,7 +8,7 @@ Fonctionnalités:
 - droits de`${WORKDSPACE}` ou `/opt/app` en u+rx, g+rx
 - auto discovery des secrets dans `/run/secrets` et accessibles en tant que variables d'environnement
 - configuration des options de la jvm via la variable d'environnement `JAVA_OPTS`
-- ONBUILD copie de `/usr/src/app/target/*.jar` du stage `builder` vers `${WORKSPACE}/app.jar
+- ONBUILD copie de `/usr/src/app/target/*.jar` du stage `builder` vers `${WORKSPACE}/app.jar`
 
 # Getting started
 
