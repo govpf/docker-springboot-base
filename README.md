@@ -16,7 +16,7 @@ Fonctionnalités:
 
 - Nommer la première couche `builder`
 - Placer le `jar` à `${WORKSPACE}/app.jar`, par défaut `/opt/app`, soit `/opt/app/app.jar`
-- Dans la couche finale, partir de `govpf/springboot-base:17-jre`
+- Dans la couche finale, partir de `govpf/springboot-base:17-jre` ou `govpf/springboot-base:17-jre-onbuild`
 
 ## Exemple d'utilisation dans un dockerfile
 
@@ -27,6 +27,18 @@ COPY . .
 RUN mvn package -DskipTests
 
 FROM govpf/docker-springboot-base:17-jre
+COPY --from=builder /usr/src/app/target/*.jar $WORKSPACE/app.jar
+```
+
+## Exemple d'utilisation dans un dockerfile avec ONBUILD
+
+```
+FROM govpf/maven:3-jdk-17 as builder
+WORKDIR /usr/src/app
+COPY . .
+RUN mvn package -DskipTests
+
+FROM govpf/docker-springboot-base:17-jre-onbuild
 ```
 
 # Définition des fichiers normatifs par défaut

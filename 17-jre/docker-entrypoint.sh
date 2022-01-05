@@ -22,4 +22,4 @@ exec java $JAVA_OPTS \
     -Dfile.encoding=UTF-8 \
     -Dspring.main.banner-mode=OFF \
     -XshowSettings:vm \
-    -jar /opt/app/app.jar
+    -jar $WORKSPACE/app.jar
