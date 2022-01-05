@@ -6,7 +6,7 @@ Fonctionnalités:
 - désactivation de la bannière Spring Boot
 - utilisateur par défaut `app:app`
 - droits de`${WORKDSPACE}` ou `/opt/app` en u+rx, g+rx
-- auto discovery des secrets dans `/run/secrets` et accessibles en tant que variables d'environnement
+- auto discovery des secrets dans `/run/secrets` et accessibles via variables d'environnement: préfix configurable via variable d'environnement `app_name`
 - configuration des options de la jvm via la variable d'environnement `JAVA_OPTS`
 - ONBUILD copie de `/usr/src/app/target/*.jar` du stage `builder` vers `${WORKSPACE}/app.jar`
 
