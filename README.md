@@ -27,6 +27,7 @@ COPY . .
 RUN mvn package -DskipTests
 
 FROM govpf/docker-springboot-base:17-jre
+ENV app_name MY_AWESOME_APP
 COPY --from=builder /usr/src/app/target/*.jar $WORKSPACE/app.jar
 ```
 
@@ -39,6 +40,7 @@ COPY . .
 RUN mvn package -DskipTests
 
 FROM govpf/docker-springboot-base:17-jre-onbuild
+ENV app_name MY_AWESOME_APP
 ```
 
 # Définition des fichiers normatifs par défaut

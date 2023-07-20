@@ -5,9 +5,10 @@ on: pull_request
 jobs:
   build:
     runs-on: ubuntu-latest
-   strategy:
-    matrix:
-       versions: [11-jre, 17-jre]
+    strategy:
+      matrix:
+        versions: [11-jre, 17-jre]
+        os: [alpine, debian]
     env:
       repo: "govpf/springboot-base"
     steps:
@@ -21,8 +22,8 @@ jobs:
     - name: Build
       uses: docker/build-push-action@v2.7.0
       with:
-        context: ./${{ matrix.versions }}
-        file: ./${{ matrix.versions }}/Dockerfile
+        context: ./${{ matrix.versions }}/${{ matrix.os }}
+        file: ./${{ matrix.versions }}/${{ matrix.os }}/Dockerfile
         platforms: linux/amd64
         pull: true
         push: false
@@ -30,8 +31,8 @@ jobs:
     - name: Build, ONBUILD image
       uses: docker/build-push-action@v2.7.0
       with:
-        context: ./${{ matrix.versions }}
-        file: ./${{ matrix.versions }}/Dockerfile.onbuild
+        context: ./${{ matrix.versions }}/${{ matrix.os }}
+        file: ./${{ matrix.versions }}/${{ matrix.os }}/Dockerfile.onbuild
         platforms: linux/amd64
         pull: true
         push: false
