@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         versions: [11-jre, 17-jre]
-        os: [alpine, debian]
+        distro: [alpine, debian]
     env:
       repo: "govpf/springboot-base"
     steps:
@@ -32,24 +32,24 @@ jobs:
     - name: Build and push
       uses: docker/build-push-action@v2.7.0
       with:
-        context: ./${{ matrix.versions }}/${{ matrix.os }}
-        file: ./${{ matrix.versions }}/${{ matrix.os }}/Dockerfile
+        context: ./${{ matrix.versions }}/${{ matrix.distro }}
+        file: ./${{ matrix.versions }}/${{ matrix.distro }}/Dockerfile
         platforms: linux/amd64
         pull: true
         push: true
         tags: |
-          ${{ env.repo }}:${{ matrix.versions }}-${{ matrix.os }}
+          ${{ env.repo }}:${{ matrix.versions }}-${{ matrix.distro }}
 
     - name: Build and push, ONBUILD image
       uses: docker/build-push-action@v2.7.0
       with:
-        context: ./${{ matrix.versions }}/${{ matrix.os }}
-        file: ./${{ matrix.versions }}/${{ matrix.os }}/Dockerfile.onbuild
+        context: ./${{ matrix.versions }}/${{ matrix.distro }}
+        file: ./${{ matrix.versions }}/${{ matrix.distro }}/Dockerfile.onbuild
         platforms: linux/amd64
         pull: true
         push: true
         tags: |
-          ${{ env.repo }}:${{ matrix.versions }}-onbuild-${{ matrix.os }}
+          ${{ env.repo }}:${{ matrix.versions }}-onbuild-${{ matrix.distro }}
 
     - name: Build and push (default)
       uses: docker/build-push-action@v2.7.0
