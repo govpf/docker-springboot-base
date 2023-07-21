@@ -1,4 +1,4 @@
-FROM govpf/openjdk:11-jre-debian
+FROM govpf/openjdk:11-jre-alpine
 
 ARG app_name=MY_APP
 ENV app_name=$app_name
