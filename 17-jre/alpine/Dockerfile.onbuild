@@ -10,7 +10,7 @@ COPY docker-entrypoint.sh .
 ONBUILD COPY --from=builder /usr/src/app/target/*.jar $WORKSPACE/app.jar
 
 RUN addgroup app \
-        && adduser --system --no-create-home --group app \
+        && adduser -SHG app app \
         && chown -R app:app ./ \
         && chmod -R 550 ./
 
