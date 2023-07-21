@@ -10,8 +10,8 @@ COPY docker-entrypoint.sh .
 
 RUN addgroup app \
         && adduser -SHG app app \
-        && chown -R app:app ./ \
-        && chmod -R 550 ./
+        && chown -R app:app ${WORKSPACE} \
+        && chmod -R 550 ${WORKSPACE}
 
 USER app
 
